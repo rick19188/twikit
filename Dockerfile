@@ -12,4 +12,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . ./
 
 # Run your Python entry point
-CMD ["python", "twikit/client/client.py"]
+# CMD ["python", "twikit/client/client.py"]
+CMD ["python", "-m", "twikit.client.client"]
