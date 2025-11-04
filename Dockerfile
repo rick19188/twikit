@@ -13,4 +13,4 @@ RUN pip install --user .
 # If you have a requirements.txt for extra deps, add: RUN pip install --user -r requirements.txt
 
 # Run your main script (replace 'main.py' with your actual entry file, e.g., 'examples/search.py' if using an example)
-CMD ["python3", "main.py"]
+CMD ["python3", "twikit/client/client.py"]
