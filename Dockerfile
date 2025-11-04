@@ -1,14 +1,16 @@
-FROM python:3.10-slim
+FROM apify/actor-python:latest  # Uses Python 3.12+ with Apify SDK preinstalled
 
-# Install dependencies
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+# Set working directory and user for security (Apify standard)
+WORKDIR /home/myuser
+USER myuser
 
-# Copy your actor code
-COPY . ./
+# Copy all repo files into the container
+COPY --chown=myuser:myuser . ./
 
-# Set working directory
-WORKDIR /usr/src/app
+# Install the twikit library itself (via setup.py) and any dependencies
+RUN pip install --user .
 
-# Run your Python entry point
-CMD ["python", "your_script.py"]
+# If you have a requirements.txt for extra deps, add: RUN pip install --user -r requirements.txt
+
+# Run your main script (replace 'main.py' with your actual entry file, e.g., 'examples/search.py' if using an example)
+CMD ["python3", "main.py"]
